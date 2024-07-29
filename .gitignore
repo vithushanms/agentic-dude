@@ -1,0 +1,12 @@
+# env file
+.env
+
+# virtual environment
+agentic-dude/*
+
+# IDE
+vscode/*
+
+# python
+*.pyc
+__pycache__/
