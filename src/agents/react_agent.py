@@ -9,10 +9,13 @@ llm = get_openai_model()
 
 # dudes
 tools = [
-    create_summary_dude_engine(),
-    create_query_dude_engine(llm=llm, file_name="population.csv"),
+    create_summary_dude_engine()
 ]
 
+def get_agent(context_documents: str, verbose: bool = True) -> ReActAgent:
+    documentsArray = context_documents.split(",")
 
-def get_agent(verbose: bool = True) -> ReActAgent:
+    for document in documentsArray:
+        tools.append(create_query_dude_engine(llm=llm, file_name=document))
+
     return ReActAgent(llm=llm, tools=tools, verbose=verbose, memory=[])
